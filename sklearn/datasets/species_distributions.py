@@ -96,10 +96,13 @@ def _load_csv(F):
         record array representing the data
     """
     try:
-        names = F.readline().strip().split(',')
+        
+        # Decode the bytes into unicode (str) before split
+        names = F.readline().strip().decode().split(",")
     except:
         F = open(F)
-        names = F.readline().strip().split(',')
+        # Decode the bytes into unicode (str) before split
+        names = F.readline().strip().decode().split(",")
 
     rec = np.loadtxt(F, skiprows=1, delimiter=',',
                      dtype='a22,f4,f4')
